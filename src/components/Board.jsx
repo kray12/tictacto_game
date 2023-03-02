@@ -1,34 +1,14 @@
-import { useState } from 'react';
 import Sq from './Sq.jsx'
-const Board = () => {
-    const [player,setNextPlayer] = useState(true); // set players turn.
-    const [sqrs,setSqrs]=useState(Array(9).fill(null)); // Asume board as an array with 9 sqs.
-    console.log(sqrs); // to print array of sqs.
-    const sqClick = (clickedSq)=>{ // Mark sq. functions on board.
-        if(sqrs[clickedSq]){
-            return; // exit condition to prevent rewrite sq.
-        } 
-        setSqrs(currentSq=>{ // update sqs.
-            return currentSq.map((mappedArr,spot)=>{
-                if(clickedSq === spot){
-                    return player ? "X" : "O"; // set players input.
-                }
-                // return console.log(sqrs);
-                return mappedArr;
-            })
-        })
-    
-        // console.log('clicked')
-        setNextPlayer((player => !player)) // reset players
-    }
-// main container  --
+const Board = ({BoardProp ,sqBoardClickProp}) => {
+// accesing sq props in board --
     const renderSq = spot => {
         return (
-            <Sq value={sqrs[spot]} 
-                onClick={()=>sqClick(spot)}
+            <Sq sqValProp={BoardProp[spot]} 
+                sqClickProp={()=>sqBoardClickProp(spot)}
             />
         )
     }
+    // main board conatiner
     return (
     <div className="board">
         <div className="board-row">

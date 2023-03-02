@@ -1,8 +1,9 @@
-const Square=({value,onClick})=> {
-    // console.log(props);
+const Square=({sqValProp,sqClickProp})=> {
+    // console.log(sqValProp);
+    // console.log(sqClickProp);
     return (
-    <button type="button" className="square" onClick={onClick}>
-    {value}
+    <button type="button" className="square" onClick={sqClickProp}>
+    {sqValProp}
     </button>
     );
 };
